@@ -22,5 +22,13 @@ namespace BarberApp.Repositories
                                select a).ToListAsync();
             return query;
         }
+
+        public async Task<Barber?> GetByEmailAsync(string email)
+        {
+            var query = await (from a in dbContext.Barbers
+                               where a.Email == email && !a.IsDeleted
+                               select a).FirstOrDefaultAsync();
+            return query;
+        }
     }
 }

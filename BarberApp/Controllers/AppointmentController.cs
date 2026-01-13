@@ -4,6 +4,7 @@ using BarberApp.Interfaces;
 using BarberApp.ModelsDTO;
 using BarberApp.Repositories;
 using BarberApp.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BarberApp.Controllers
@@ -52,7 +53,7 @@ namespace BarberApp.Controllers
 
 
         [HttpPut("{id}/reserve")]
-        public async Task<IActionResult> Reserve(int id, AppointmentReserveDTO dto)
+        public async Task<IActionResult> Reserve(int id, [FromBody] AppointmentReserveDTO dto)
         {
             var reservation = await appointmentService.ReserveAsync(id, dto);
             return Created($"/reservations/{reservation.ReservationId}", reservation);

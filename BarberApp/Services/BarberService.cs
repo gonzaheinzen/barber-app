@@ -32,5 +32,7 @@ namespace BarberApp.Services
                 Surname = barber.Surname
             }).ToList();
         }
+
+
     }
 }

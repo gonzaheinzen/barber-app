@@ -7,5 +7,7 @@ namespace BarberApp.Services
         Task<Barber?> GetByIdAsync(int id);
 
         Task<List<Barber>> GetAllAsync();
+
+        Task<Barber?> GetByEmailAsync(string email);
     }
 }
