@@ -39,6 +39,19 @@ namespace BarberApp.Controllers
             return Ok(availables);
         }
 
+        [HttpGet("available")]
+        public async Task<IActionResult> GetAvailableByBarberAndDate([FromQuery] int barberId, [FromQuery] DateOnly? date)
+        {
+            if(barberId <= 0)
+            {
+                 return BadRequest("BarberId es requerido.");
+            }
+
+            var result = await appointmentService.GetAvailableByBarberAndDateAsync(barberId, date);
+
+            return Ok(result);
+        }
+
         [HttpGet("barber/{barberId:int}")]
         public async Task<IActionResult> GetByBarberAndOptionalDate(int barberId, [FromQuery] DateOnly? date)
         {

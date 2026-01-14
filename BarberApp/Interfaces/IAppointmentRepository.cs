@@ -9,6 +9,8 @@ namespace BarberApp.Interfaces
 
         Task<int> InsertAsync(Appointment appointment);
 
+        Task<List<Appointment>> GetAvailableByBarberAndDateAsync(int barberId, DateOnly? date);
+
         Task<List<Appointment>> GetByBarberAndDateAsync(int id, DateOnly date);
 
         Task<List<Appointment>> GetAllAsync();

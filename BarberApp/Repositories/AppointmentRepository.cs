@@ -25,6 +25,16 @@ namespace BarberApp.Repositories
         }
 
 
+        public async Task<List<Appointment>> GetAvailableByBarberAndDateAsync(int barberId, DateOnly? date) 
+        {
+            var query = await (from a in dbContext.Appointments
+                               where a.BarberId == barberId && a.Status == "Available" && !a.IsDeleted && (date == null || a.Date == date)
+                               select a).ToListAsync();
+
+            return query;
+
+        }
+
         public async Task<List<Appointment>> GetByBarberAndDateAsync(int id, DateOnly date)
         {
             var query = await (from a in dbContext.Appointments

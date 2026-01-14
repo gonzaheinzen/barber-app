@@ -81,6 +81,12 @@ namespace BarberApp.Services
 
         }
 
+        public async Task<List<AppointmentDTO>> GetAvailableByBarberAndDateAsync(int barberId, DateOnly? date) 
+        {
+            var availables = await _appointmentRepository.GetAvailableByBarberAndDateAsync(barberId, date);
+            return availables.Select(a => ToDto(a)).ToList();
+        }
+
         public async Task<List<AppointmentDTO>> GetAvailablesAsync()
         {
             var availables = await _appointmentRepository.GetAllAsync();

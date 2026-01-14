@@ -9,6 +9,8 @@ namespace BarberApp.Interfaces
 
         Task<AppointmentDTO?> GetByIdAsync(int id);
 
+        Task<List<AppointmentDTO>> GetAvailableByBarberAndDateAsync(int barberId, DateOnly? date);
+
         Task<List<AppointmentDTO>> GetAvailablesAsync();
 
         Task<List<AppointmentDTO>> GetAppointmentsByBarberAsync(int barberid);
